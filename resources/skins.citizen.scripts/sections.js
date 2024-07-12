@@ -70,6 +70,34 @@ function init( bodyContent ) {
 		}
 	};
 
+	const simulateClickOnHeadings = () => {
+		headings.forEach((heading) => {
+			const event = new Event('click', { bubbles: true, cancelable: true });
+			heading.dispatchEvent(event);
+		});
+	};
+	const simulateClickOnCollapsedHeadings = () => {
+		headings.forEach((heading) => {
+			if (heading.classList.contains('citizen-section-heading--collapsed')) {
+				const event = new Event('click', { bubbles: true, cancelable: true });
+				heading.dispatchEvent(event);
+			}
+		});
+	};
+	// Simulate clicks on collapsed headings if the screen width is less than 1120 pixels and a hash is present in the URL
+    const handleHashChange = () => {
+        if (window.location.hash) {
+            simulateClickOnCollapsedHeadings();
+            
+            // Move the page to the anchor point
+            const anchor = document.querySelector(window.location.hash);
+            if (anchor) {
+                anchor.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
+	// Listen for hash change events
+	window.addEventListener('hashchange', handleHashChange);
 	const headingsLength = headings.length;
 	for ( let i = 0; i < headingsLength; i++ ) {
 		setHeadlineAttributes( headings[ i ], `citizen-section-${ i + 1 }`, i );
@@ -80,6 +108,11 @@ function init( bodyContent ) {
 	} );
 
 	bodyContent.addEventListener( 'click', handleClick, false );
+
+	// Simulate clicks on all headings if the screen width is less than 1120 pixels and no anchor is present in the URL
+	if (window.innerWidth < 1120 && !window.location.hash) {
+		simulateClickOnHeadings();
+	}
 }
 
 module.exports = {
