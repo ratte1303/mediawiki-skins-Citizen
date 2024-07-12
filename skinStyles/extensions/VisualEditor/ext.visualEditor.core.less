@@ -402,11 +402,14 @@
 
 /* Hide less useful buttons on small viewport */
 @media ( max-width: @max-width-breakpoint-tablet ) {
-	.ve-ui-toolbar-group {
-		&-format,
-		&-style,
-		&-help {
-			display: none;
-		}
+	.page-actions {
+		visibility: hidden;
 	}
+	.citizen-toc {
+		visibility: hidden;
+	}
+	.oo-ui-toolbar-bar {
+		flex-direction: column;
+		display: flex;
+	}		
 }
