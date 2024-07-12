@@ -169,7 +169,6 @@ video {
 @media ( max-width: @max-width-breakpoint-tablet ) {
 	.mw-body,
 	.parsoid-body {
-		overflow-x: hidden; // fallback if clip is not supported
-		overflow-x: clip; // avoid breaking layout in smaller screen sizes
+		overflow-x: inherit;
 	}
 }
