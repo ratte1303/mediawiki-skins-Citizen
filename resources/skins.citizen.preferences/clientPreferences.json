@@ -3,6 +3,10 @@
 		"options": [ "small", "standard", "large" ],
 		"preferenceKey": "citizen-font-size"
 	},
+	"citizen-feature-pure-black": {
+		"options": [ "0", "1" ],
+		"preferenceKey": "citizen-pure-black"
+	},
 	"skin-theme": {
 		"options": [ "os", "day", "night" ],
 		"preferenceKey": "citizen-theme"
@@ -10,10 +14,6 @@
 	"citizen-feature-custom-width": {
 		"options": [ "standard", "wide", "full" ],
 		"preferenceKey": "citizen-width"
-	},
-	"citizen-feature-pure-black": {
-		"options": [ "0", "1" ],
-		"preferenceKey": "citizen-pure-black"
 	},
 	"citizen-feature-autohide-navigation": {
 		"options": [ "0", "1" ],
