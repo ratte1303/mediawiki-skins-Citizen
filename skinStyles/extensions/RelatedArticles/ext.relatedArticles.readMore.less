@@ -10,7 +10,7 @@
 
 @import '../../../resources/variables.less';
 
-.ra-read-more {
+.noprint {
 	max-width: var( --width-layout--extended );
 	padding: var( --space-md ) 0 0;
 	margin-right: auto;
@@ -27,7 +27,7 @@
 	}
 }
 
-.ext-related-articles-card-list {
+.read-more-container-card-list {
 	gap: var( --space-xs );
 
 	h3 {
@@ -43,14 +43,15 @@
 		}
 	}
 
-	.ext-related-articles-card {
+	.cdx-card {
 		overflow: hidden; // Enforce rounded corner
 		background-color: var( --color-surface-2 );
 		border-color: var( --border-color-base ) !important;
 		border-radius: var( --border-radius-medium ) !important; // Same border-radius regardless
+		width: 100%!important;
 	}
 
-	.ext-related-articles-card > a {
+	.cdx-card > a {
 		&:hover {
 			background-color: var( --background-color-button-quiet--hover );
 			box-shadow: var( --box-shadow-card ); // reset
@@ -61,22 +62,22 @@
 		}
 	}
 
-	.ext-related-articles-card-extract {
+	.cdx-card__text {
 		margin-top: var( --space-xxs );
 		font-size: var( --font-size-x-small );
 		color: var( --color-subtle );
 	}
 
-	.ext-related-articles-card-thumb {
+	.cdx-thumbnail {
 		margin-right: var( --space-sm );
 	}
 }
 
 @media all and ( min-width: @min-width-breakpoint-tablet ) {
-	.ext-related-articles-card-list {
+	.read-more-container-card-list {
 		gap: var( --space-sm );
 
-		.ext-related-articles-card {
+		.cdx-card {
 			// Magic
 			width: ~'calc( 100% / 3 - var( --space-xs ) )';
 			margin-right: 0;
