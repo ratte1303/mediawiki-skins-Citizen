@@ -355,7 +355,7 @@
 	background-color: var( --color-surface-1 );
 	border-color: var( --border-color-base );
 	border-radius: var( --border-radius-medium );
-	box-shadow: var( --box-shadow-dialog );
+	box-shadow: var( --box-shadow-drop-xx-large );
 }
 
 /*
@@ -626,7 +626,7 @@ TODO: Need to refactor the current shadow for filter drop-shadow, see variables.
 	background-color: var( --color-surface-1 );
 	border-color: var( --border-color-interactive );
 	border-radius: 0 0 var( --border-radius-base ) var( --border-radius-base );
-	box-shadow: var( --box-shadow-dialog );
+	box-shadow: var( --box-shadow-drop-xx-large );
 }
 
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted {
@@ -744,17 +744,12 @@ TODO: Need to refactor the current shadow for filter drop-shadow, see variables.
 }
 
 // Invert icon for dark mode
-.oo-ui-iconElement-icon:not( .oo-ui-image-invert ),
-.oo-ui-indicatorElement-indicator:not( .oo-ui-image-invert ) {
+.oo-ui-iconElement-icon:not( .oo-ui-image-progressive ):not( .oo-ui-image-destructive ):not( .oo-ui-checkboxInputWidget-checkIcon ):not( .oo-ui-image-invert ):not( .mw-no-invert ),
+.oo-ui-indicatorElement-indicator {
 	filter: var( --filter-invert );
 }
 
-// Reset style if light mode
-@media ( forced-colors: active ) and ( prefers-color-scheme: dark ) {
-	.skin-theme-clientpref-light {
-		.oo-ui-iconElement-icon:not( .oo-ui-image-invert ),
-		.oo-ui-indicatorElement-indicator:not( .oo-ui-image-invert ) {
-			filter: none;
-		}
-	}
+.oo-ui-iconElement-icon.oo-ui-image-progressive,
+.oo-ui-iconElement-icon.oo-ui-checkboxInputWidget-checkIcon {
+	filter: var( --filter-invert-primary );
 }

@@ -19,22 +19,12 @@
 	border-radius: var( --border-radius-medium );
 	box-shadow: var( --box-shadow-border );
 
-	// Avoid double border (#902)
-	&[ border='1' ] {
-		box-shadow: none;
-	}
-
 	caption {
-		padding-right: var( --space-sm );
-		padding-left: var( --space-sm );
-		margin-bottom: var( --space-xs );
+		padding: var( --space-xs ) var( --space-sm );
+		font-size: var( --font-size-medium );
 		font-weight: var( --font-weight-semibold );
 		color: var( --color-emphasized );
 		text-align: start;
-	}
-
-	thead + tbody {
-		border-top: var( --border-width-base ) solid var( --border-color-base );
 	}
 
 	tbody tr {
@@ -53,21 +43,16 @@
 	}
 
 	tr {
-		th,
-		td {
-			border-top: var( --border-width-base ) solid var( --border-color-base );
-		}
-
 		&:first-of-type {
 			th,
 			td {
-				border-top: 0;
-
 				&:first-child {
+					border-left-width: 0;
 					border-top-left-radius: var( --border-radius-medium );
 				}
 
 				&:last-child {
+					border-right-width: 0;
 					border-top-right-radius: var( --border-radius-medium );
 				}
 			}
@@ -77,13 +62,67 @@
 			th,
 			td {
 				&:first-child {
+					border-left-width: 0;
 					border-bottom-left-radius: var( --border-radius-medium );
 				}
 
 				&:last-child {
+					border-right-width: 0;
 					border-bottom-right-radius: var( --border-radius-medium );
 				}
 			}
+		}
+	}
+
+	/* Add border separator between tr, thead, tbody, tfoot */
+	> :not( [ hidden ] ) ~ :not( [ hidden ] ),
+	> * > :not( [ hidden ] ) ~ :not( [ hidden ] ) {
+		border-top: var( --border-width-base ) solid var( --border-color-base );
+	}
+
+	/* Reset border radius between thead tbody, tbody tfoot, etc. */
+	> :has( + :not( :empty ) ) {
+		tr:last-of-type {
+			th,
+			td {
+				&:first-child {
+					border-bottom-left-radius: var( --border-radius-sharp );
+				}
+
+				&:last-child {
+					border-bottom-right-radius: var( --border-radius-sharp );
+				}
+			}
+		}
+	}
+
+	> * + :not( :empty ) {
+		tr:first-of-type {
+			th,
+			td {
+				&:first-child {
+					border-top-left-radius: var( --border-radius-sharp );
+				}
+
+				&:last-child {
+					border-top-right-radius: var( --border-radius-sharp );
+				}
+			}
+		}
+	}
+
+	&--border {
+		tr {
+			> :not( [ hidden ] ) ~ :not( [ hidden ] ) {
+				border-right: var( --border-width-base ) solid var( --border-color-base );
+				border-left: var( --border-width-base ) solid var( --border-color-base );
+			}
+		}
+	}
+
+	&--stripe {
+		tbody tr:nth-child( even ) {
+			background-color: var( --color-surface-2 );
 		}
 	}
 }

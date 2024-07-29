@@ -12,7 +12,7 @@
 	&__list {
 		margin: 0 0 0 var( --space-xs );
 		list-style: none;
-		border-left: var( --border-width-base ) solid var( --border-color-base );
+		border-left: var( --border-width-thick ) solid var( --border-color-base );
 
 		.citizen-toc__link {
 			border-top-left-radius: 0;
@@ -27,7 +27,6 @@
 		padding: var( --space-xs );
 		font-weight: var( --font-weight-medium );
 		color: var( --color-emphasized );
-		border-radius: var( --border-radius-base );
 
 		&.citizen-toc__top {
 			height: 0;
@@ -57,11 +56,10 @@
 		bottom: 0;
 		left: 0;
 		flex-shrink: 0;
-		width: 3px;
+		width: var( --border-width-thick );
 		margin-top: var( --space-xs );
 		margin-bottom: var( --space-xs );
-		margin-left: -2px;
-		border-radius: var( --border-radius-pill );
+		margin-left: ~'calc( var( --border-width-thick ) * -1 )';
 	}
 
 	&__text {
@@ -113,7 +111,7 @@
 			// This is not bulletproof since it will get covered by page header
 			// in extremely short height. but it should be good for now
 			max-height: ~'calc( var( --header-card-maxheight ) - 8rem )';
-			padding: var( --space-md );
+			padding: var( --space-xs );
 			transform-origin: var( --transform-origin-offset-start ) var( --transform-origin-offset-end );
 		}
 
@@ -130,7 +128,7 @@
 				pointer-events: auto; // HACK: Make button clickable
 				background-color: var( --color-surface-1 );
 				border-radius: var( --border-radius-medium );
-				box-shadow: var( --box-shadow-dialog );
+				box-shadow: var( --box-shadow-drop-xx-large );
 
 				// The hover state colors are not great but it will do for now
 				&:hover {
@@ -157,11 +155,11 @@
 
 @media ( min-width: @min-width-breakpoint-desktop ) {
 	.citizen-toc {
-		--toc-margin-top: var( --space-xs );
 		position: -webkit-sticky;
 		position: sticky;
-		top: var( --toc-margin-top );
-		max-height: ~'calc( 100vh - var( --toc-margin-top ) - var( --space-md ) )';
+		top: var( --height-sticky-header );
+		max-height: ~'calc( 100vh - var( --height-sticky-header ) )';
+		padding: var( --space-xs ) 0;
 		overflow-y: auto;
 		overscroll-behavior: contain;
 
@@ -174,16 +172,6 @@
 
 			> * {
 				opacity: 1;
-			}
-		}
-
-		// Sticky header styles
-		.citizen-page-header--sticky & {
-			--toc-margin-top: ~'calc( var( --header-size ) + var(  --space-xxl  ) )';
-
-			// Sticky header is shorter without buttons
-			@media ( max-height: 800px ) {
-				--toc-margin-top: ~'calc( var( --header-size ) + var( --space-md ) )';
 			}
 		}
 
