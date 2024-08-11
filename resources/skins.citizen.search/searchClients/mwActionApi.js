@@ -159,6 +159,7 @@ function mwActionApiSearchClient( config ) {
 				maxage: cacheExpiry,
 				generator: 'prefixsearch',
 				gpssearch: q,
+				gpsnamespace: '0|3000',
 				gpslimit: limit.toString(),
 				redirects: '',
 				prop: 'pageprops|pageimages',
